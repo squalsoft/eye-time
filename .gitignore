@@ -1,8 +1,11 @@
 .DS_Store
+dist/electron/*
+dist/web/*
+build/*
+!build/icons
+coverage
 node_modules/
-app/
-bin/
-include/
-lib/
-share/
 npm-debug.log
+npm-debug.log.*
+thumbs.db
+!.gitkeep
