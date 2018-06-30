@@ -16,7 +16,7 @@
             <input class="time" v-model="minutes" placeholder="Set work time">
           </p>
           <button @click="start" v-if="!isStarted">Start Timer</button>
-          <button @click="stop" v-if="isStarted">Stop Timer</button>
+          <button class="stop" @click="stop" v-if="isStarted">Stop Timer</button>
           <p class="left-time"><span>Work time left: {{ timeLeft }}</span></p>
           <br>
           <br>
@@ -76,6 +76,9 @@ input {
 
 input.time {
   font-weight: bold;
+  border-radius: 5px;
+  border-color: lightgray;
+  border-style: solid;
 }
 
 * {
@@ -158,6 +161,15 @@ main > div {
 .doc button:hover {
   background-color: #3eaa79;
   border: 1px solid #3b916a;
+}
+
+button.stop {
+  background-color: #eb4e43;
+  border: 1px solid #c0c0c0;
+}
+button.stop:hover {
+  background-color: #d44035;
+  border: 1px solid #8d8d8d;
 }
 
 .doc button.alt {
