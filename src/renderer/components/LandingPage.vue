@@ -11,18 +11,20 @@
 
       <div class="right-side">
         <div class="doc center">
-          <div class="title">Set Timer</div>
+          <div class="title">Set Work Time</div>
           <p>
-            <input class="time" v-model="minutes" placeholder="Set work time">
+            <input class="time" v-model="workMinutes" placeholder="in minutes">
           </p>
-          <button @click="start" v-if="!isStarted">Start Timer</button>
-          <button class="stop" @click="stop" v-if="isStarted">Stop Timer</button>
+          <button class="main-btn" @click="start" v-if="!isStarted">Start Timer</button>
+          <button class="main-btn, stop" @click="stop" v-if="isStarted">Stop Timer</button>
           <p class="left-time"><span>Work time left: {{ timeLeft }}</span></p>
-          <br>
-          <br>
         </div>
         <div class="doc center">
-          <div class="title alt">Other Actions</div>
+          <div class="title alt">Set Rest Time</div>
+          <p>
+            <input class="time" v-model="restMinutes" placeholder="in minutes">
+          </p>
+
           <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Electron+Vue</button>
           <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
           <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
@@ -42,7 +44,8 @@
     data() {
       return {
         isStarted: false,
-        minutes: 30,
+        workMinutes: 30,
+        restMinutes: 5,
         timeLeft: 0,
       };
     },
@@ -143,6 +146,10 @@ main > div {
 .doc p {
   color: black;
   margin-bottom: 10px;
+}
+
+.main-btn {
+  width: 125px;
 }
 
 .doc button {
