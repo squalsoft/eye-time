@@ -15,15 +15,16 @@
           <p>
             <input class="time" v-model="workMinutes" placeholder="in minutes">
           </p>
-          <button class="main-btn" @click="start" v-if="!isStarted">Start Timer</button>
-          <button class="main-btn, stop" @click="stop" v-if="isStarted">Stop Timer</button>
-          <p class="left-time"><span>Work time left: {{ timeLeft }}</span></p>
         </div>
         <div class="doc center">
           <div class="title alt">Set Rest Time</div>
           <p>
             <input class="time" v-model="restMinutes" placeholder="in minutes">
           </p>
+
+          <button class="main-btn" @click="start" v-if="!isStarted">Start Work</button>
+          <button class="main-btn stop" @click="stop" v-if="isStarted">Stop Timer</button>
+          <p class="left-time"><span>Work time left: {{ timeLeft }}</span></p>
 
           <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Electron+Vue</button>
           <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
