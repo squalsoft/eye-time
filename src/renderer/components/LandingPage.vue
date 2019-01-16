@@ -37,31 +37,66 @@
 </template>
 
 <script>
-  import SystemInformation from './LandingPage/SystemInformation';
+import { Howl } from 'howler';
+import SystemInformation from './LandingPage/SystemInformation';
+// const sounds = require.context('../assets/'.false, /\.mp3$/);
+const endTime = require('../assets/endTime.mp3');
 
-  export default {
-    name: 'landing-page',
-    components: { SystemInformation },
-    data() {
-      return {
-        isStarted: false,
-        workMinutes: 30,
-        restMinutes: 5,
-        timeLeft: 0,
-      };
+export default {
+  name: 'landing-page',
+  components: { SystemInformation },
+  data() {
+    return {
+      isStarted: false,
+      workMinutes: 30,
+      restMinutes: 5,
+      timeLeft: '00:00',
+      secondsLeft: 0,
+      workTimerId: {},
+      restTimerId: {},
+    };
+  },
+  methods: {
+    start() {
+      this.isStarted = true;
+      this.secondsLeft = this.workMinutes * 60;
+      this.calcWorkTime();
+
+      this.workTimerId = setInterval(() => {
+        // Уменьшаем время
+        this.secondsLeft -= 1;
+        this.calcWorkTime();
+
+        // Если времени больше не осталось, то стопорим всё
+        if (this.secondsLeft <= 0) {
+          clearInterval(this.workTimerId);
+          playEndWork();
+        }
+      }, 1000);
     },
-    methods: {
-      start() {
-        this.isStarted = true;
-      },
-      stop() {
-        this.isStarted = false;
-      },
-      open(link) {
-        this.$electron.shell.openExternal(link);
-      },
+    stop() {
+      this.isStarted = false;
+      clearInterval(this.workTimerId);
     },
-  };
+    playEndWork() {
+      // https://github.com/goldfire/howler.js#quick-start
+      const sound = new Howl({
+        src: [endTime],
+      });
+      sound.play();
+    },
+    open(link) {
+      this.$electron.shell.openExternal(link);
+    },
+    calcWorkTime() {
+      const minutes = Math.floor(this.secondsLeft / 60)
+        .toString().padStart(2, '0');
+      const seconds = (this.secondsLeft % 60).toFixed(0)
+        .toString().padStart(2, '0');
+      this.timeLeft = `${minutes}:${seconds}`;
+    },
+  },
+};
 </script>
 
 <style>
