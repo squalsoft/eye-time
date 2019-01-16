@@ -70,7 +70,7 @@ export default {
         // Если времени больше не осталось, то стопорим всё
         if (this.secondsLeft <= 0) {
           clearInterval(this.workTimerId);
-          playEndWork();
+          this.playEndWork();
         }
       }, 1000);
     },
