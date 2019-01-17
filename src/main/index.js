@@ -5,16 +5,16 @@ import { app, BrowserWindow } from 'electron'; // eslint-disable-line
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
 if (process.env.NODE_ENV !== 'development') {
+  // eslint-disable-next-line no-underscore-dangle
   global.__static = require('path')
     .join(__dirname, '/static')
     .replace(/\\/g, '\\\\'); // eslint-disable-line
 }
 
 let mainWindow;
-const winURL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:9080'
-    : `file://${__dirname}/index.html`;
+const winURL = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:9080'
+  : `file://${__dirname}/index.html`;
 
 function createWindow() {
   /**
@@ -24,6 +24,7 @@ function createWindow() {
     height: 563,
     useContentSize: true,
     width: 1000,
+    alwaysOnTop: true,
   });
 
   mainWindow.loadURL(winURL);
