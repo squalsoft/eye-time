@@ -65,6 +65,9 @@ export default {
       this.mainWindow = this.$electron.remote.BrowserWindow.getFocusedWindow();
 
       this.isStarted = true;
+
+      this.hideWindow();
+
       this.secondsLeft = this.workMinutes * 60;
       this.calcWorkTime();
 
@@ -112,6 +115,10 @@ export default {
       // setTimeout(() => {
       //   this.mainWindow.setAlwaysOnTop('false');
       // }, 1000);
+    },
+    hideWindow() {
+      // Вытащить из трея
+      this.mainWindow.minimize();
     },
   },
 };
