@@ -6,7 +6,7 @@
         <span class="title">
           Welcome to Eye Time project!
         </span>
-        <system-information></system-information>
+        <!-- <system-information></system-information> -->
       </div>
 
       <div class="right-side">
@@ -22,14 +22,15 @@
             <input class="time" v-model="restMinutes" placeholder="in minutes">
           </p>
 
-          <button class="main-btn" @click="start" v-if="!isStarted">Start Work</button>
-          <button class="main-btn stop" @click="stop" v-if="isStarted">Stop Timer</button>
           <p class="left-time"><span>Work time left: {{ timeLeft }}</span></p>
 
+          <button class="main-btn" @click="start" v-if="!isStarted">Start Work</button>
+          <button class="main-btn stop" @click="stop" v-if="isStarted">Stop Timer</button>
+<!-- 
           <button @click="open('https://simulatedgreg.gitbooks.io/electron-vue/content/')">Electron+Vue</button>
           <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
           <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
-          
+           -->
         </div>
       </div>
     </main>
@@ -38,13 +39,13 @@
 
 <script>
 import { Howl } from 'howler';
-import SystemInformation from './LandingPage/SystemInformation';
+// import SystemInformation from './LandingPage/SystemInformation';
 // const sounds = require.context('../assets/'.false, /\.mp3$/);
 const endTime = require('../assets/endTime.mp3');
 
 export default {
   name: 'landing-page',
-  components: { SystemInformation },
+  // components: { SystemInformation },
   data() {
     return {
       isStarted: false,
@@ -54,10 +55,15 @@ export default {
       secondsLeft: 0,
       workTimerId: {},
       restTimerId: {},
+      mainWindow: {},
     };
   },
   methods: {
     start() {
+      // Получаем текущее окно (из index.js)
+      // https://electron.atom.io/docs/api/browser-window/#browserwindowgetfocusedwindow
+      this.mainWindow = this.$electron.remote.BrowserWindow.getFocusedWindow();
+
       this.isStarted = true;
       this.secondsLeft = this.workMinutes * 60;
       this.calcWorkTime();
@@ -71,6 +77,7 @@ export default {
         if (this.secondsLeft <= 0) {
           clearInterval(this.workTimerId);
           this.playEndWork();
+          this.showWindow();
         }
       }, 1000);
     },
@@ -94,6 +101,17 @@ export default {
       const seconds = (this.secondsLeft % 60).toFixed(0)
         .toString().padStart(2, '0');
       this.timeLeft = `${minutes}:${seconds}`;
+    },
+    showWindow() {
+      // Вытащить из трея
+      this.mainWindow.show();
+
+      // // Сделать поверх всех на 1 сек
+      // this.mainWindow.setAlwaysOnTop('true');
+      // // once show then it leaves from top when click outside
+      // setTimeout(() => {
+      //   this.mainWindow.setAlwaysOnTop('false');
+      // }, 1000);
     },
   },
 };
