@@ -1,15 +1,11 @@
 <template>
   <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
+    
     <main>
-      <div class="left-side">
-        <span class="title">
-          Welcome to Eye Time project!
-        </span>
-        <!-- <system-information></system-information> -->
+      <div class="center">
+        <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
       </div>
-
-      <div class="right-side">
+      <div class="center">
         <div class="doc center">
           <div class="title">Set Work Time</div>
           <p>
@@ -169,14 +165,14 @@ body {
 }
 
 #logo {
-  height: auto;
+  height: 100px;
   margin-bottom: 20px;
-  width: 420px;
 }
 
 main {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 
 main > div {
