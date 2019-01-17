@@ -81,6 +81,7 @@ export default {
           clearInterval(this.workTimerId);
           this.playEndWork();
           this.showWindow();
+          this.isStarted = false;
         }
       }, 1000);
     },
@@ -109,7 +110,8 @@ export default {
       // Вытащить из трея
       this.mainWindow.show();
 
-      // // Сделать поверх всех на 1 сек
+      // Почему-то не работает
+      // Сделать поверх всех на 1 сек
       // this.mainWindow.setAlwaysOnTop('true');
       // // once show then it leaves from top when click outside
       // setTimeout(() => {
