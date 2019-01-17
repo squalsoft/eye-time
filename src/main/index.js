@@ -12,9 +12,10 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow;
-const winURL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:9080'
-  : `file://${__dirname}/index.html`;
+const winURL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:9080'
+    : `file://${__dirname}/index.html`;
 
 function createWindow() {
   /**
@@ -24,7 +25,7 @@ function createWindow() {
     height: 563,
     useContentSize: true,
     width: 1000,
-    alwaysOnTop: true,
+    // alwaysOnTop: true,
   });
 
   mainWindow.loadURL(winURL);

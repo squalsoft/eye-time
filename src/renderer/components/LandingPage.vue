@@ -112,11 +112,11 @@ export default {
 
       // Почему-то не работает
       // Сделать поверх всех на 1 сек
-      // this.mainWindow.setAlwaysOnTop('true');
-      // // once show then it leaves from top when click outside
-      // setTimeout(() => {
-      //   this.mainWindow.setAlwaysOnTop('false');
-      // }, 1000);
+      this.mainWindow.setAlwaysOnTop(true);
+      // once show then it leaves from top when click outside
+      setTimeout(() => {
+        this.mainWindow.setAlwaysOnTop(false);
+      }, 1000);
     },
     hideWindow() {
       // Вытащить из трея
