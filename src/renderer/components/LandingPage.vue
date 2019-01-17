@@ -59,7 +59,6 @@ export default {
       // Получаем текущее окно (из index.js)
       // https://electron.atom.io/docs/api/browser-window/#browserwindowgetfocusedwindow
       this.mainWindow = this.$electron.remote.BrowserWindow.getFocusedWindow();
-
       this.isStarted = true;
 
       this.hideWindow();

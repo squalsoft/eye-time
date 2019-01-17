@@ -25,6 +25,7 @@ function createWindow() {
     height: 500,
     useContentSize: true,
     width: 500,
+    center: true,
     // alwaysOnTop: true,
   });
 
