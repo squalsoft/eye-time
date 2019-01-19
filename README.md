@@ -2,26 +2,39 @@
 
 > Application for saving eyes from work.
 
-#### Build Setup
+Build with template from: + Typescript
+https://medium.com/@mikeal/vue-js-electron-the-easy-way-adc3ca09234a
 
-```bash
-# install dependencies
+## Project setup
+
+```
 npm install
+```
 
-# serve with hot reload at localhost:9080
+### Compiles and hot-reloads for development
+
+```
 npm run dev
+```
 
-# build electron application for production
+### Compiles and minifies for production
+
+```
 npm run build
+```
 
-# run unit & end-to-end tests
-npm test
+### Run your tests
 
+```
+npm run test
+```
 
-# lint all JS/Vue component files in `src/`
+### Lints and fixes files
+
+```
 npm run lint
 ```
 
----
+### Customize configuration
 
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html)...
+See [Configuration Reference](https://cli.vuejs.org/config/).
