@@ -1,28 +1,28 @@
 <template>
-  <div id='wrapper'>
+  <div id="wrapper">
     <main>
-      <div class='center'>
-        <img id='logo' src='~@/assets/logo.png' alt='electron-vue'>
+      <div class="center">
+        <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
       </div>
-      <div class='center'>
-        <div class='doc center'>
-          <div class='title'>Set Work Time</div>
+      <div class="center">
+        <div class="doc center">
+          <div class="title">Set Work Time</div>
           <p>
-            <input class='time' v-model='workMinutes' placeholder='in minutes'>
+            <input class="time" v-model="workMinutes" placeholder="in minutes">
           </p>
         </div>
-        <div class='doc center'>
-          <div class='title alt'>Set Rest Time</div>
+        <div class="doc center">
+          <div class="title alt">Set Rest Time</div>
           <p>
-            <input class='time' v-model='restMinutes' placeholder='in minutes'>
+            <input class="time" v-model="restMinutes" placeholder="in minutes">
           </p>
 
-          <p class='left-time'>
+          <p class="left-time">
             <span>Work time left: {{ timeLeft }}</span>
           </p>
 
-          <button class='main-btn' @click='start' v-if='!isStarted'>Start Work</button>
-          <button class='main-btn stop' @click='stop' v-if='isStarted'>Stop Timer</button>
+          <button class="main-btn" @click="start" v-if="!isStarted">Start Work</button>
+          <button class="main-btn stop" @click="stop" v-if="isStarted">Stop Timer</button>
           <!-- 
           <button @click='open('https://simulatedgreg.gitbooks.io/electron-vue/content/')'>Electron+Vue</button>
           <button class='alt' @click='open('https://electron.atom.io/docs/')'>Electron</button>
@@ -36,9 +36,8 @@
 
 
 <script lang='ts'>
-
 interface Window {
-	require: any;
+  require: any;
 }
 declare var window: Window;
 
@@ -47,7 +46,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Howl } from 'howler';
 
 // Хак https://github.com/electron/electron/issues/7300
-const electron = (<any>window).require('electron');
+const electron = (window as any).require('electron');
 const { remote, BrowserWindow } = electron;
 //import {remote, BrowserWindow} from 'electron';
 //const { remote, BrowserWindow } = window.require('electron');
@@ -55,7 +54,7 @@ const { remote, BrowserWindow } = electron;
 const endTime = require('../assets/endTime.mp3');
 
 @Component({
-  components: {},
+  components: {}
 })
 export default class Home extends Vue {
   // data
@@ -70,9 +69,7 @@ export default class Home extends Vue {
   private mainWindow: any;
 
   // lifecycle hook
-  public mounted() {
-    
-  }
+  public mounted() {}
 
   // computed
   // get computedMsg () {
@@ -113,7 +110,7 @@ export default class Home extends Vue {
   public playEndWork(): void {
     // https://github.com/goldfire/howler.js#quick-start
     const sound = new Howl({
-      src: [endTime],
+      src: [endTime]
     });
     sound.play();
   }

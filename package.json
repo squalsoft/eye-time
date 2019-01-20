@@ -24,6 +24,7 @@
     "@vue/cli-service": "^3.3.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.0.0",
     "vue-template-compiler": "^2.5.21"
   }
