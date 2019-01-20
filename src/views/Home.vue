@@ -48,9 +48,10 @@ import { Howl } from 'howler';
 // Хак https://github.com/electron/electron/issues/7300
 const electron = (window as any).require('electron');
 const { remote, BrowserWindow } = electron;
-//import {remote, BrowserWindow} from 'electron';
-//const { remote, BrowserWindow } = window.require('electron');
+// import {remote, BrowserWindow} from 'electron';
+// const { remote, BrowserWindow } = window.require('electron');
 
+// tslint:disable-next-line:no-var-requires
 const endTime = require('../assets/endTime.mp3');
 
 @Component({
@@ -69,7 +70,7 @@ export default class Home extends Vue {
   private mainWindow: any;
 
   // lifecycle hook
-  public mounted() {}
+  // public mounted() {}
 
   // computed
   // get computedMsg () {
