@@ -71,6 +71,8 @@ const { remote, BrowserWindow } = electron;
 
 // tslint:disable-next-line:no-var-requires
 const endTime = require('../assets/endTime.mp3');
+// tslint:disable-next-line:no-var-requires
+const startWork = require('../assets/bell.mp3');
 
 @Component({
   components: {}
@@ -103,11 +105,7 @@ export default class Home extends Vue {
     // https://electron.atom.io/docs/api/browser-window/#browserwindowgetfocusedwindow
     this.mainWindow = remote.BrowserWindow.getFocusedWindow();
 
-    if (this.state !== 2) {
-      // Если не сняли с паузы
-      // Пересчёт времени заново
-      this.secondsLeft = this.workMinutes * 60;
-    }
+    this.recalcSecondsLeft();
 
     this.state = 1;
 
@@ -122,13 +120,35 @@ export default class Home extends Vue {
 
       // Если времени больше не осталось, то стопорим всё
       if (this.secondsLeft <= 0) {
-        clearInterval(this.workTimerId);
-        this.playEndWork();
-        this.showWindow();
-        this.state = 0;
+        this.secondsLeft = 0;
+        // clearInterval(this.workTimerId);
+        if (this.isWorkingTime) {
+          this.playEndWork();
+          this.showWindow();
+        } else {
+          this.playStartWork();
+          this.hideWindow();
+        }
+        // this.state = 0;
+        // Меняем тип интервала
+        this.isWorkingTime = !this.isWorkingTime;
+        this.recalcSecondsLeft();
       }
     }, 1000);
   }
+
+  public recalcSecondsLeft() {
+    if (this.state !== 2) {
+      // Если не сняли с паузы
+      // Пересчёт времени заново
+      if (this.isWorkingTime) {
+        this.secondsLeft = this.workMinutes * 60;
+      } else {
+        this.secondsLeft = this.restMinutes * 60;
+      }
+    }
+  }
+
   public pause(): void {
     this.state = 2;
     clearInterval(this.workTimerId);
@@ -147,10 +167,19 @@ export default class Home extends Vue {
     });
     sound.play();
   }
+  public playStartWork(): void {
+    const sound = new Howl({
+      src: [startWork]
+    });
+    sound.play();
+  }
   // open(link:string) : void {
   //   this.$electron.shell.openExternal(link);
   // }
   public calcWorkTime(): void {
+    if (this.secondsLeft < 0) {
+      this.secondsLeft = 0;
+    }
     const minutes = Math.floor(this.secondsLeft / 60)
       .toString()
       .padStart(2, '0');
