@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper" :class="{ rest: !isWorkingTime }">
+  <div id="wrapper" :class="{ work:isWorkingTime, rest: !isWorkingTime }">
     <main>
       <div class="center">
         <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
@@ -242,12 +242,14 @@ input.time {
 //    font-family: 'Source Sans Pro', sans-serif;
 // }
 
-#wrapper {
+.work {
   background: radial-gradient(
     ellipse at top left,
     rgba(255, 255, 255, 1) 40%,
     rgba(229, 229, 229, 0.9) 100%
   );
+}
+#wrapper {
   height: 100vh;
   padding: 60px 80px;
   width: 100vw;
@@ -279,7 +281,7 @@ main > div {
 }
 
 .rest {
-  background: #66de66;
+  background: radial-gradient(ellipse at top left, #d6ffd6 40%, #66de66 100%);
 }
 
 .welcome {
