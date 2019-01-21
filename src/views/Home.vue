@@ -1,8 +1,10 @@
 <template>
   <div id="wrapper" :class="{ work:isWorkingTime, rest: !isWorkingTime }">
     <main>
-      <div class="center">
-        <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
+      <div class="center logo">
+        <img v-if="state === 0" id="logo" src="~@/assets/logo.png" alt="eye">
+        <img class="state" v-if="isWorkingTime && state !== 0" src="~@/assets/hammer.svg">
+        <img class="state" v-if="!isWorkingTime && state !== 0" src="~@/assets/palms.png">
       </div>
       <div class="center">
         <div class="doc center">
@@ -18,7 +20,8 @@
           </p>
 
           <p class="left-time">
-            <span>Work time left: {{ timeLeft }}</span>
+            <span v-if="isWorkingTime">Work time left: {{ timeLeft }}</span>
+            <span v-if="!isWorkingTime">Rest time left: {{ timeLeft }}</span>
           </p>
 
           <div class="controls">
@@ -215,6 +218,8 @@ export default class Home extends Vue {
 // @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 p.left-time {
   margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .center {
   text-align: center;
@@ -239,7 +244,8 @@ input.time {
 }
 
 // body {
-//    font-family: 'Source Sans Pro', sans-serif;
+//   margin: 0px;
+//   //    font-family: 'Source Sans Pro', sans-serif;
 // }
 
 .work {
@@ -258,6 +264,9 @@ input.time {
 #logo {
   height: 100px;
   margin-bottom: 20px;
+}
+.state {
+  height: 100px;
 }
 
 main {
