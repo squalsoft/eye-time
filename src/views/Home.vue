@@ -21,8 +21,23 @@
             <span>Work time left: {{ timeLeft }}</span>
           </p>
 
-          <button class="main-btn" @click="start" v-if="!isStarted">Start Work</button>
-          <button class="main-btn stop" @click="stop" v-if="isStarted">Stop Timer</button>
+          <div class="controls">
+            <button v-if="state !== 1" class="main-btn" @click="start" title="Start Work">
+              <img src="~@/assets/play.svg">
+            </button>
+            <button
+              v-if="state !== 2 && state !==0"
+              class="main-btn pause"
+              @click="pause"
+              title="Pause Timer"
+            >
+              <img src="~@/assets/pause.svg">
+            </button>
+            <button v-if="state !== 0" class="main-btn stop" @click="stop" title="Stop Timer">
+              <img src="~@/assets/stop.svg">
+            </button>
+          </div>
+
           <!-- 
           <button @click='open('https://simulatedgreg.gitbooks.io/electron-vue/content/')'>Electron+Vue</button>
           <button class='alt' @click='open('https://electron.atom.io/docs/')'>Electron</button>
@@ -59,7 +74,9 @@ const endTime = require('../assets/endTime.mp3');
 })
 export default class Home extends Vue {
   // data
-  public isStarted: boolean = false;
+  public isWorkingTime: boolean = true;
+  /** 0 - stop, 1 - play, 2 - pause */
+  public state: number = 0;
   public workMinutes: number = 30;
   public restMinutes: number = 5;
   public timeLeft: string = '00:00';
@@ -83,11 +100,16 @@ export default class Home extends Vue {
     // https://electron.atom.io/docs/api/browser-window/#browserwindowgetfocusedwindow
     this.mainWindow = remote.BrowserWindow.getFocusedWindow();
 
-    this.isStarted = true;
+    if (this.state !== 2) {
+      // Если не сняли с паузы
+      // Пересчёт времени заново
+      this.secondsLeft = this.workMinutes * 60;
+    }
+
+    this.state = 1;
 
     this.hideWindow();
 
-    this.secondsLeft = this.workMinutes * 60;
     this.calcWorkTime();
 
     this.workTimerId = setInterval(() => {
@@ -100,12 +122,16 @@ export default class Home extends Vue {
         clearInterval(this.workTimerId);
         this.playEndWork();
         this.showWindow();
-        this.isStarted = false;
+        this.state = 0;
       }
     }, 1000);
   }
+  public pause(): void {
+    this.state = 2;
+    clearInterval(this.workTimerId);
+  }
   public stop(): void {
-    this.isStarted = false;
+    this.state = 0;
     clearInterval(this.workTimerId);
   }
   public playEndWork(): void {
@@ -208,6 +234,11 @@ main > div {
   display: flex;
   flex-direction: column;
 }
+.controls {
+  button {
+    margin: 5px;
+  }
+}
 
 .welcome {
   color: #555;
@@ -244,14 +275,23 @@ main > div {
   border-radius: 2em;
   display: inline-block;
   color: #fff;
-  background-color: #4fc08d;
+  background-color: #26a6d1;
   transition: all 0.15s ease;
   box-sizing: border-box;
   border: 1px solid #4fc08d;
 }
 .doc button:hover {
-  background-color: #3eaa79;
+  background-color: #49c1e9;
   border: 1px solid #3b916a;
+}
+
+button.pause {
+  background-color: #f5f244;
+  border: 1px solid #c0c0c0;
+}
+button.pause:hover {
+  background-color: #f8f686;
+  border: 1px solid #8d8d8d;
 }
 
 button.stop {
@@ -259,7 +299,7 @@ button.stop {
   border: 1px solid #c0c0c0;
 }
 button.stop:hover {
-  background-color: #d44035;
+  background-color: #ff837a;
   border: 1px solid #8d8d8d;
 }
 
