@@ -6,7 +6,7 @@
         <img class="state" v-if="isWorkingTime && state !== 0" src="~@/assets/hammer.svg">
         <img class="state" v-if="!isWorkingTime && state !== 0" src="~@/assets/palms.png">
       </div>
-      <div class="center">
+      <div class="center main-content">
         <div class="doc center">
           <div class="title">Set Work Time</div>
           <p>
@@ -223,6 +223,9 @@ p.left-time {
 }
 .center {
   text-align: center;
+}
+.main-content {
+  margin-top: 20px;
 }
 
 input {
