@@ -36,6 +36,9 @@
             <button v-if="state !== 0" class="main-btn stop" @click="stop" title="Stop Timer">
               <img src="~@/assets/stop.svg">
             </button>
+            <button v-if="state !== 0" class="main-btn skip" @click="skip" title="Skip interval">
+              <img src="~@/assets/skip.svg">
+            </button>
           </div>
 
           <!-- 
@@ -133,6 +136,9 @@ export default class Home extends Vue {
   public stop(): void {
     this.state = 0;
     clearInterval(this.workTimerId);
+  }
+  public skip(): void {
+    this.secondsLeft = 0;
   }
   public playEndWork(): void {
     // https://github.com/goldfire/howler.js#quick-start
@@ -301,6 +307,15 @@ button.stop {
 button.stop:hover {
   background-color: #ff837a;
   border: 1px solid #8d8d8d;
+}
+
+button.skip {
+  background-color: #c4f5b8;
+  border: 1px solid #c0c0c0;
+}
+button.skip:hover {
+  background-color: #e3fddd;
+  border: 1px solid #c0c0c0;
 }
 
 .doc button.alt {
