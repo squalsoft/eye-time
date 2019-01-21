@@ -217,7 +217,7 @@ export default class Home extends Vue {
 <style scoped lang='less'>
 // @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 p.left-time {
-  margin: 10px;
+  padding: 20px;
   font-size: 20px;
   font-weight: bold;
 }
