@@ -109,7 +109,9 @@ export default class Home extends Vue {
 
     this.state = 1;
 
-    this.hideWindow();
+    if (this.isWorkingTime) {
+      this.hideWindow();
+    }
 
     this.calcWorkTime();
 
@@ -197,13 +199,14 @@ export default class Home extends Vue {
     // Сделать поверх всех на 1 сек
     this.mainWindow.setAlwaysOnTop(true);
     // once show then it leaves from top when click outside
-    setTimeout(() => {
-      this.mainWindow.setAlwaysOnTop(false);
-    }, 1000);
+    // setTimeout(() => {
+    //   this.mainWindow.setAlwaysOnTop(false);
+    // }, 1000);
   }
   public hideWindow(): void {
-    // Вытащить из трея
+    // Свернуть в трей
     this.mainWindow.minimize();
+    this.mainWindow.setAlwaysOnTop(false);
   }
 }
 </script>
