@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper">
+  <div id="wrapper" :class="{ rest: !isWorkingTime }">
     <main>
       <div class="center">
         <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
@@ -273,6 +273,10 @@ main > div {
   button {
     margin: 5px;
   }
+}
+
+.rest {
+  background: #66de66;
 }
 
 .welcome {
