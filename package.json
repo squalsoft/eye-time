@@ -4,13 +4,12 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && electron-builder",
     "lint": "vue-cli-service lint",
     "dev": "NODE_ENV=DEV vue-cli-service serve & sleep 5 && NODE_ENV=DEV electron app.js"
   },
   "dependencies": {
     "@types/howler": "^2.0.5",
-    "electron": "^4.0.1",
     "howler": "^2.1.1",
     "vue": "^2.5.21",
     "vue-class-component": "^6.0.0",
@@ -19,6 +18,8 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "electron": "^4.0.1",
+    "electron-builder": "^20.38.5",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-typescript": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
