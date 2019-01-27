@@ -2,6 +2,11 @@
 node_modules
 /dist
 
+/build/mac
+/build/eye-*
+/build/builder*
+/build/latest*
+
 # local env files
 .env.local
 .env.*.local

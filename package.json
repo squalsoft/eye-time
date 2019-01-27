@@ -1,12 +1,47 @@
 {
   "name": "eye-time",
-  "version": "0.1.0",
+  "version": "0.7.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build && electron-builder",
     "lint": "vue-cli-service lint",
-    "dev": "NODE_ENV=DEV vue-cli-service serve & sleep 5 && NODE_ENV=DEV electron app.js"
+    "dev": "NODE_ENV=DEV vue-cli-service serve & sleep 5 && NODE_ENV=DEV electron index.js"
+  },
+  "build": {
+    "productName": "eye-time",
+    "appId": "com.eye-time.app",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "index.js",
+      "dist/**/*"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "build/icons/icon.icns"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico"
+    },
+    "linux": {
+      "icon": "build/icons"
+    }
   },
   "dependencies": {
     "@types/howler": "^2.0.5",
@@ -20,7 +55,6 @@
   "devDependencies": {
     "electron": "^4.0.1",
     "electron-builder": "^20.38.5",
-    "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-typescript": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
     "less": "^3.0.4",
