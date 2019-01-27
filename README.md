@@ -1,6 +1,9 @@
 # eye-time
 
 > Application for saving eyes from work.
+> Take a break at work. It saves your eyes.
+> Give them a time.
+> You can use it for Pomodoro technique.
 
 Build with template from: + Typescript
 https://medium.com/@mikeal/vue-js-electron-the-easy-way-adc3ca09234a
