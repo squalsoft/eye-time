@@ -5,10 +5,10 @@
 > Give them a time.
 > You can use it for Pomodoro technique.
 
-Build with template from: + Typescript
-https://medium.com/@mikeal/vue-js-electron-the-easy-way-adc3ca09234a
+Download releases here
+https://github.com/squalsoft/eye-time/releases
 
-## Project setup
+## For development:
 
 ```
 npm install
@@ -20,24 +20,11 @@ npm install
 npm run dev
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for production and make electron package
 
 ```
 npm run build
 ```
 
-### Run your tests
-
-```
-npm run test
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+> Build with template from: + Typescript
+> https://medium.com/@mikeal/vue-js-electron-the-easy-way-adc3ca09234a
