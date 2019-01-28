@@ -13,12 +13,12 @@ notifications:
   email: false
 script:
   - npm run build
-before_deploy:
-  # Set up git user name and tag this commit
-  - git config --local user.name "mr_squall"
-  - git config --local user.email "squalfot@gmail.com"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-  - git tag $TRAVIS_TAG
+# before_deploy:
+#   # Set up git user name and tag this commit
+#   - git config --local user.name "mr_squall"
+#   - git config --local user.email "squalfot@gmail.com"
+#   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+#   - git tag $TRAVIS_TAG
 deploy:
   provider: releases
   api_key: $ENCRYPTED_GITHUB_TOKEN
