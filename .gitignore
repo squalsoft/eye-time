@@ -6,6 +6,8 @@ node_modules
 /build/eye-*
 /build/builder*
 /build/latest*
+/build/win*
+/build/linux*
 
 # local env files
 .env.local

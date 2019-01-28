@@ -8,6 +8,8 @@
 Download releases here
 https://github.com/squalsoft/eye-time/releases
 
+[![Build Status](https://travis-ci.com/squalsoft/eye-time.svg?branch=master)](https://travis-ci.com/squalsoft/eye-time)
+
 ## For development:
 
 ```

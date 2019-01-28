@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && electron-builder",
+    "release": "vue-cli-service build && electron-builder",
+    "burild:multi": "vue-cli-service build && electron-builder -mwl",
     "lint": "vue-cli-service lint",
     "dev": "NODE_ENV=DEV vue-cli-service serve & sleep 5 && NODE_ENV=DEV electron index.js"
   },
