@@ -54,10 +54,11 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "electron": "^4.0.1",
-    "electron-builder": "^20.38.5",
     "@vue/cli-plugin-typescript": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
+    "cross-env": "^5.2.0",
+    "electron": "^4.0.1",
+    "electron-builder": "^20.38.5",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "tslint-config-prettier": "^1.17.0",
