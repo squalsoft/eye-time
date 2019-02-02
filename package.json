@@ -7,7 +7,9 @@
     "release": "vue-cli-service build && electron-builder",
     "burild:multi": "vue-cli-service build && electron-builder -mwl",
     "lint": "vue-cli-service lint",
-    "dev": "NODE_ENV=DEV vue-cli-service serve & sleep 5 && NODE_ENV=DEV electron index.js"
+    "dev": "cross-env-shell NODE_ENV=DEV run-p dev:*",
+    "dev:serve": "cross-env-shell vue-cli-service serve",
+    "dev:electron": "cross-env-shell electron index.js"
   },
   "build": {
     "productName": "eye-time",
